@@ -1,0 +1,41 @@
+{
+  "name": "@rplan/logger",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "module": "src/index.js",
+  "author": "Actano GmbH (https://rplan.com/)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@rplan/config": "^1.2.0",
+    "bunyan": "^1.8.12",
+    "bunyan-debug-stream": "^1.0.8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "eslint": "^4.19.1",
+    "eslint-config-actano-base": "^3.0.0",
+    "eslint-plugin-import": "^2.11.0"
+  },
+  "scripts": {
+    "build": "npm run build:babel",
+    "build:babel": "babel --out-dir lib src",
+    "ci": "npm run clean && npm run lint && npm run build",
+    "clean": "npm run clean:babel",
+    "clean:babel": "rm -rf lib",
+    "lint": "eslint ."
+  }
+}
