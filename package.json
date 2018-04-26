@@ -16,7 +16,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@rplan/config": "^1.2.0",
     "bunyan": "^1.8.12",
     "bunyan-debug-stream": "^1.0.8"
   },
@@ -29,6 +28,9 @@
     "eslint": "^4.19.1",
     "eslint-config-actano-base": "^3.0.0",
     "eslint-plugin-import": "^2.11.0"
+  },
+  "peerDependencies": {
+    "@rplan/config": "^1.2.0"
   },
   "scripts": {
     "build": "npm run build:babel",
