@@ -1,5 +1,7 @@
 # rplan-logger
 
+[![Build Status](https://travis-ci.org/actano/rplan-logger.svg?branch=master)](https://travis-ci.org/actano/rplan-logger)
+
 This is a reusable logger module for RPLAN. It's based on [`bunyan`](https://www.npmjs.com/package/bunyan).
 
 ## Configuration
