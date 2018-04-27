@@ -12,6 +12,7 @@ deploy:
   email: marcus.mennemeier@actano.de
   on:
     tags: true
+    repo: actano/rplan-logger
     node: '8'
   api_key:
     secure: CarC5gkN1faeWIuNaW8OpoyJVk829AazXnB94EPTl/5DybTw3E5rydkPOOpzrpRhpzEG5RZIv+f8MmKfUU+cV1c1MORECfe0bWIbnnarKa9vTtz503DVSa08TEKfzP8C587ZTjQwSWO3k0yNp/kjo8NnkXpjUgwUcJ6Rzf1hhaWYVi5c4vR4bYw5M6rgy8m1zo7mqjjXjJoOacGNFi5C4V2me96eXCh49ebV2LikQ7xltxBBm6B1OfPxz5OWV5EbOABxfi/AelwNJ68own2+2hut92S8zxk2pxYO+ZAWPh77Oymb1gN5nPXTqwE1b3x/AEJg2f+iIgqIuMiuphN7b0sTJ1tF4mE/xpgAIL2ziH1xKCFLZCdUDl9j1ztlJ7DSUySAzMYRUAiQSrBBKXOJNYShsopAh+43Vt12sKoJn/pFUU4aPFyTilMiMNw4m1dH1bQBk7XIdClTd/P5K9RJx00gctwJMlOGhBK/myUHdAFbe40j1MvYC+YKVEG2eQnlwAqF47NJ7FclZAEYTdAL856RcATjzHoV2EuArNU+ydfv0guTO3fKTQ+yN/4qylffYmCaaXhYhSJ9oDvaTksgt+Kn2F1As1jEB2dusSaXGKux8EYywyX6atvVtIeQJla4hjt4l504WnCd+WHF9GJmLRGABTonKEv3vyb1zeGTXAg=
