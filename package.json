@@ -20,6 +20,7 @@
     "bunyan-debug-stream": "^1.0.8"
   },
   "devDependencies": {
+    "@rplan/config": "^1.2.0",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
