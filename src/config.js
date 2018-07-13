@@ -2,7 +2,15 @@ import bunyan from 'bunyan'
 import bunyanDebugStream from 'bunyan-debug-stream'
 import config from '@rplan/config'
 
-const LOG_LEVEL = config.get('LOG_LEVEL')
+const getLogLevel = () => {
+  if (config.getBoolean('RPLAN_LOGGER_OFF')) {
+    return bunyan.FATAL + 1
+  }
+
+  return config.get('LOG_LEVEL')
+}
+
+const LOG_LEVEL = getLogLevel()
 const LOG_HUMAN_READABLE = config.getBoolean('logging:human_readable')
 
 const humanReadableStream = () => ({
