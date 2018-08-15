@@ -754,9 +754,9 @@ builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
-bunyan-debug-stream@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/bunyan-debug-stream/-/bunyan-debug-stream-1.0.8.tgz#df612852d5d0b6d6df3f30214d8a7e4ee925106d"
+bunyan-debug-stream@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/bunyan-debug-stream/-/bunyan-debug-stream-2.0.0.tgz#b9593e38753f594e3f9db3eb2fdebdc2af147a9f"
   dependencies:
     colors "^1.0.3"
     exception-formatter "^1.0.4"

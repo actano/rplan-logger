@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "bunyan": "^1.8.12",
-    "bunyan-debug-stream": "^1.0.8"
+    "bunyan-debug-stream": "^2.0.0"
   },
   "devDependencies": {
     "@rplan/config": "^1.2.0",
