@@ -27,7 +27,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "eslint": "^4.19.1",
-    "eslint-config-actano-base": "^3.0.0",
+    "eslint-config-actano-base": "^5.0.0",
     "eslint-plugin-import": "^2.11.0"
   },
   "peerDependencies": {
