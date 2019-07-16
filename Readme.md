@@ -10,12 +10,17 @@ This is a reusable logger module for RPLAN. It's based on [`bunyan`](https://www
 The logger can be configured via the `@rplan/config` module which should be made available as a peer
 dependency to this logger module. The following config keys are recognized:
 
-* `LOG_LEVEL` (string) - Defines the log level upto which log entries will be written. See the [bunyan docs](https://github.com/trentm/node-bunyan#levels)
-for more information on available log levels.
-* `logging:human_readable` (boolean) - A flag that indicates whether log entries should be formatted
-for human readability. Otherwise log entries will be pure JSON.
+### Required configuration
+
 * `logging:root_logger_name` (string) - The name of the root logger. This will be the common
 namespace prefix for all log entries which are created with this logger.
+
+### Optional configuration
+
+* `LOG_LEVEL` (string), defaults to `info` - Defines the log level upto which log entries will be written. See the [bunyan docs](https://github.com/trentm/node-bunyan#levels)
+for more information on available log levels.
+* `logging:human_readable` (boolean), defaults to `false` - A flag that indicates whether log entries should be formatted
+for human readability. Otherwise log entries will be pure JSON.
 
 ## API
 
