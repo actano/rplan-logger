@@ -1,6 +1,6 @@
 root: true
 extends: actano-base
-parser: babel-eslint
+
 overrides:
   - files:
       - test/**/*.js
