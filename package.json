@@ -29,7 +29,7 @@
     "@babel/register": "^7.9.0",
     "@rplan/config": "^1.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-actano-base": "^5.0.0",
+    "eslint-config-actano-base": "^7.0.0",
     "eslint-plugin-import": "^2.17.3"
   },
   "peerDependencies": {
