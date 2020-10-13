@@ -34,6 +34,10 @@ const redactSensitiveData = (message) => {
     }
 
     return Object.entries(message).reduce((acc, [key, value]) => {
+      if (typeof value === 'string') {
+        return { ...acc, [key]: replaceJwtOccurrences(value) }
+      }
+
       if (Array.isArray(value)) {
         return { ...acc, [key]: value.map(redactSensitiveData) }
       }
@@ -42,11 +46,7 @@ const redactSensitiveData = (message) => {
         return { ...acc, [key]: redactSensitiveData(value) }
       }
 
-      if (typeof value !== 'string') {
-        return acc
-      }
-
-      return { ...acc, [key]: replaceJwtOccurrences(value) }
+      return { ...acc, [key]: value }
     }, {})
   }
 
