@@ -1,0 +1,60 @@
+const JWT_REGEX = /[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*/
+const REDACT_TEXT = '<<REDACTED JWT>>'
+
+const isJWT = (occurrence) => {
+  const [, payload] = occurrence.split('.')
+
+  try {
+    const decodedPayload = Buffer.from(payload, 'base64').toString()
+    const { iat, exp } = JSON.parse(decodedPayload)
+
+    return !!iat && !!exp
+  } catch (err) {
+    return false
+  }
+}
+
+const replaceJwtOccurrences = message => message.replace(
+  JWT_REGEX,
+  occurrence => (isJWT(occurrence) ? REDACT_TEXT : occurrence),
+)
+
+const redactSensitiveData = (message) => {
+  if (typeof message === 'string') {
+    return replaceJwtOccurrences(message)
+  }
+
+  if (Array.isArray(message)) {
+    return message.map(redactSensitiveData)
+  }
+
+  if (typeof message === 'object') {
+    if (message instanceof RegExp) {
+      return message
+    }
+
+    return Object.entries(message).reduce((acc, [key, value]) => {
+      if (Array.isArray(value)) {
+        return { ...acc, [key]: value.map(redactSensitiveData) }
+      }
+
+      if (typeof value === 'object') {
+        return { ...acc, [key]: redactSensitiveData(value) }
+      }
+
+      if (typeof value !== 'string') {
+        return acc
+      }
+
+      return { ...acc, [key]: replaceJwtOccurrences(value) }
+    }, {})
+  }
+
+  return message
+}
+
+export const redact = (args) => {
+  const [message, ...rest] = args
+  const redactedMessage = redactSensitiveData(message)
+  return [redactedMessage, ...rest]
+}
