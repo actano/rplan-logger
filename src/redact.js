@@ -3,6 +3,9 @@ const REDACT_TEXT = '<<REDACTED JWT>>'
 
 const isRegExp = value => value instanceof RegExp
 const isDate = value => value instanceof Date
+const isString = value => typeof value === 'string'
+const isArray = value => Array.isArray(value)
+const isObject = value => typeof value === 'object'
 
 const isJWT = (occurrence) => {
   const [, payload] = occurrence.split('.')
@@ -23,11 +26,11 @@ const replaceJwtOccurrences = message => message.replace(
 )
 
 const redactSensitiveData = (message) => {
-  if (typeof message === 'string') {
+  if (isString(message)) {
     return replaceJwtOccurrences(message)
   }
 
-  if (Array.isArray(message)) {
+  if (isArray(message)) {
     return message.map(redactSensitiveData)
   }
 
@@ -35,17 +38,17 @@ const redactSensitiveData = (message) => {
     return message
   }
 
-  if (typeof message === 'object') {
+  if (isObject(message)) {
     return Object.entries(message).reduce((acc, [key, value]) => {
-      if (typeof value === 'string') {
+      if (isString(value)) {
         return { ...acc, [key]: replaceJwtOccurrences(value) }
       }
 
-      if (Array.isArray(value)) {
+      if (isArray(value)) {
         return { ...acc, [key]: value.map(redactSensitiveData) }
       }
 
-      if (typeof value === 'object') {
+      if (isObject(value)) {
         return { ...acc, [key]: redactSensitiveData(value) }
       }
 
