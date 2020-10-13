@@ -1,7 +1,7 @@
 const JWT_REGEX = /[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*/g
 const REDACT_TEXT = '<<REDACTED JWT>>'
 
-const fromBase64 = (value) => Buffer.from(value, 'base64').toString('ascii')
+const fromBase64 = value => Buffer.from(value, 'base64').toString('ascii')
 
 const isRegExp = value => value instanceof RegExp
 const isDate = value => value instanceof Date
@@ -35,18 +35,18 @@ const isJWTEnd = (value) => {
   }
 }
 
-const replaceJwtOccurrences = message => message.replace(JWT_REGEX, occurrence => {
+const replaceJwtOccurrences = message => message.replace(JWT_REGEX, (occurrence) => {
   let actualJwt = occurrence
-  
-  while(!isJWTStart(actualJwt) && actualJwt.length) {
+
+  while (!isJWTStart(actualJwt) && actualJwt.length) {
     actualJwt = actualJwt.substring(1)
   }
-  
-  while(!isJWTEnd(actualJwt) && actualJwt.length) {
+
+  while (!isJWTEnd(actualJwt) && actualJwt.length) {
     actualJwt = actualJwt.slice(0, -1)
-  }      
-  
-  // If we have a match, then `actualJwt` will contain the 
+  }
+
+  // If we have a match, then `actualJwt` will contain the
   // jwt token, otherwise we end up with an empty string
   return actualJwt ? occurrence.replace(actualJwt, REDACT_TEXT) : occurrence
 })
@@ -85,6 +85,4 @@ const redactSensitiveData = (message) => {
   return message
 }
 
-export const redact = ([message, ...rest]) => {
-  return [redactSensitiveData(message), ...rest]
-}
+export const redact = ([message, ...rest]) => [redactSensitiveData(message), ...rest]
