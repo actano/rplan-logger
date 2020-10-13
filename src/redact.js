@@ -1,6 +1,9 @@
 const JWT_REGEX = /[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*/
 const REDACT_TEXT = '<<REDACTED JWT>>'
 
+const isRegExp = value => value instanceof RegExp
+const isDate = value => value instanceof Date
+
 const isJWT = (occurrence) => {
   const [, payload] = occurrence.split('.')
 
@@ -28,11 +31,7 @@ const redactSensitiveData = (message) => {
     return message.map(redactSensitiveData)
   }
 
-  if (message instanceof RegExp) {
-    return message
-  }
-
-  if (message instanceof Date) {
+  if (isDate(message) || isRegExp(message)) {
     return message
   }
 
