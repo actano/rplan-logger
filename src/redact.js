@@ -1,5 +1,6 @@
 const JWT_REGEX = /[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_+/=]*/g
 const REDACT_TEXT = '<<REDACTED JWT>>'
+const BITS_IN_BYTES = 8
 
 const fromBase64 = value => Buffer.from(value, 'base64').toString('ascii')
 
@@ -13,7 +14,7 @@ const isJWTStart = (value) => {
   const [headers, payload] = value.split('.')
 
   try {
-    // Jwt headers and payload must be valid JSON
+    // JWT headers and payload must be valid JSON
     JSON.parse(fromBase64(payload))
     JSON.parse(fromBase64(headers))
 
@@ -24,12 +25,16 @@ const isJWTStart = (value) => {
 }
 
 const isJWTEnd = (value) => {
-  const [,, signature] = value.split('.')
+  const [headers,, signature] = value.split('.')
 
   try {
-    // A JWT signature is an HMAC-SHA256 hash, so the only
-    // validation here is to check if it consists of 256 bytes
-    return Buffer.from(fromBase64(signature)).length === 256
+    // Number of bytes in JWT signature must be at least
+    // the number of bytes specified by the hashing algorithm
+    const { alg } = JSON.parse(fromBase64(headers))
+    const expectedBytes = parseInt(alg.substring(2), 10) / BITS_IN_BYTES
+    const actualBytes = Buffer.byteLength(fromBase64(signature), 'utf8')
+
+    return actualBytes >= expectedBytes
   } catch (err) {
     return false
   }
