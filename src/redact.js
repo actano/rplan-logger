@@ -28,11 +28,15 @@ const redactSensitiveData = (message) => {
     return message.map(redactSensitiveData)
   }
 
-  if (typeof message === 'object') {
-    if (message instanceof RegExp) {
-      return message
-    }
+  if (message instanceof RegExp) {
+    return message
+  }
 
+  if (message instanceof Date) {
+    return message
+  }
+
+  if (typeof message === 'object') {
     return Object.entries(message).reduce((acc, [key, value]) => {
       if (typeof value === 'string') {
         return { ...acc, [key]: replaceJwtOccurrences(value) }
