@@ -6,9 +6,8 @@ const isDate = value => value instanceof Date
 const isString = value => typeof value === 'string'
 const isArray = value => Array.isArray(value)
 const isObject = value => typeof value === 'object'
-
-const isJWT = (occurrence) => {
-  const [, payload] = occurrence.split('.')
+const isJWT = (value) => {
+  const [, payload] = value.split('.')
 
   try {
     const decodedPayload = Buffer.from(payload, 'base64').toString()
@@ -59,8 +58,6 @@ const redactSensitiveData = (message) => {
   return message
 }
 
-export const redact = (args) => {
-  const [message, ...rest] = args
-  const redactedMessage = redactSensitiveData(message)
-  return [redactedMessage, ...rest]
+export const redact = ([message, ...rest]) => {
+  return [redactSensitiveData(message), ...rest]
 }
