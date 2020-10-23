@@ -1,5 +1,5 @@
 const JWT_REGEX = /[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_+/=]*/g
-const REDACT_TEXT = '<<REDACTED JWT>>'
+export const REDACT_TEXT = '<<REDACTED JWT>>'
 const BITS_IN_BYTES = 8
 
 const fromBase64 = value => Buffer.from(value, 'base64').toString('ascii')
