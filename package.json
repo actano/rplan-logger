@@ -18,9 +18,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@types/bunyan": "^1.8.6",
     "bunyan": "^1.8.12",
-    "bunyan-debug-stream": "^1.0.8"
+    "bunyan-debug-stream": "^1.0.8",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -28,8 +29,11 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
     "@rplan/config": "^1.2.0",
+    "@types/bunyan": "^1.8.6",
+    "@types/mocha": "^8.0.3",
     "eslint": "^5.16.0",
     "eslint-config-actano-base": "^5.0.0",
+    "eslint-plugin-mocha-no-only": "^1.1.1",
     "eslint-plugin-import": "^2.17.3"
   },
   "peerDependencies": {
@@ -38,7 +42,8 @@
   "scripts": {
     "build": "npm run build:babel",
     "build:babel": "babel --out-dir lib src",
-    "ci": "npm run clean && npm run lint && npm run build",
+    "test": "mocha \"test/**/*.unit.js\"",
+    "ci": "npm run clean && npm run lint && npm test && npm run build",
     "clean": "npm run clean:babel",
     "clean:babel": "rm -rf lib",
     "lint": "eslint ."
