@@ -1,3 +1,5 @@
+import { Writable } from 'stream'
+
 const JWT_REGEX = /[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_+/=]*/g
 export const REDACT_TEXT = '<<REDACTED JWT>>'
 const BITS_IN_BYTES = 8
@@ -90,3 +92,22 @@ export const redact = (message) => {
   return message
 }
 
+export class RedactorStream extends Writable {
+  constructor(outputStream, { outputObjectMode }) {
+    super({ objectMode: true })
+
+    this.outputStream = outputStream
+    this.outputObjectMode = outputObjectMode
+  }
+
+  _write(data, encoding, done) {
+    let redacted = redact(data)
+
+    if (!this.outputObjectMode) {
+      redacted = `${JSON.stringify(redacted)}\n`
+    }
+
+    this.outputStream.write(redacted)
+    done()
+  }
+}
