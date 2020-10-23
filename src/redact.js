@@ -56,13 +56,13 @@ const replaceJwtOccurrences = message => message.replace(JWT_REGEX, (occurrence)
   return actualJwt ? occurrence.replace(actualJwt, REDACT_TEXT) : occurrence
 })
 
-const redactSensitiveData = (message) => {
+export const redact = (message) => {
   if (isString(message)) {
     return replaceJwtOccurrences(message)
   }
 
   if (isArray(message)) {
-    return message.map(redactSensitiveData)
+    return message.map(redact)
   }
 
   if (isDate(message) || isRegExp(message)) {
@@ -76,11 +76,11 @@ const redactSensitiveData = (message) => {
       }
 
       if (isArray(value)) {
-        return { ...acc, [key]: value.map(redactSensitiveData) }
+        return { ...acc, [key]: value.map(redact) }
       }
 
       if (isObject(value)) {
-        return { ...acc, [key]: redactSensitiveData(value) }
+        return { ...acc, [key]: redact(value) }
       }
 
       return { ...acc, [key]: value }
@@ -90,4 +90,3 @@ const redactSensitiveData = (message) => {
   return message
 }
 
-export const redact = ([message, ...rest]) => [redactSensitiveData(message), ...rest]
