@@ -1,6 +1,7 @@
 import bunyan from 'bunyan'
 import bunyanDebugStream from 'bunyan-debug-stream'
 import config from '@rplan/config'
+import { RedactorStream } from './redact'
 
 const getLogLevel = () => {
   if (config.getBoolean('RPLAN_LOGGER_OFF')) {
@@ -16,13 +17,19 @@ const LOG_HUMAN_READABLE = config.getBoolean('logging:human_readable')
 const humanReadableStream = () => ({
   level: LOG_LEVEL,
   type: 'raw',
-  stream: bunyanDebugStream({ forceColor: true }),
+  stream: new RedactorStream(
+    bunyanDebugStream({ forceColor: true }),
+    { outputObjectMode: true },
+  ),
 })
 
 const defaultStream = () => ({
   level: LOG_LEVEL,
-  stream: process.stdout,
-  type: 'stream',
+  type: 'raw',
+  stream: new RedactorStream(
+    process.stdout,
+    { outputObjectMode: false },
+  ),
 })
 
 const getStreams = () => {
