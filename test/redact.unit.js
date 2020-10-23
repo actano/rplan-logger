@@ -50,9 +50,17 @@ describe('redact', () => {
     // Because the described scenario is unlikely on our logs we
     // are not addressing a fix to this problem now.
     //
-    it.skip('it should redact two token in a row', () => {
+    it.skip('it should redact two tokens in a row', () => {
       const message = `${JWT_TOKEN}${JWT_TOKEN}`
       const expectedMessage = `${REDACT_TEXT}${REDACT_TEXT}`
+      const [redactedMessage] = redact([message])
+
+      expect(redactedMessage).to.equal(expectedMessage)
+    })
+
+    it.skip('it should redact a token preceded by another segment', () => {
+      const message = `rplan.${JWT_TOKEN}`
+      const expectedMessage = `rplan.${REDACT_TEXT}`
       const [redactedMessage] = redact([message])
 
       expect(redactedMessage).to.equal(expectedMessage)
