@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- '8'
 - '10'
+- '12'
 cache: yarn
 before_install: yarn global add greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
@@ -13,7 +13,7 @@ deploy:
   on:
     tags: true
     repo: actano/rplan-logger
-    node: '8'
+    node: '12'
   api_key:
     secure: n8ENFu5nkBQ1V9sBmCI3EbCvN43HOhX82wwh2tgsD6cR2H2+6MOe7MUeh4+DJJr0HeUd5wzNZGXf7liB3ynXn2ZxQvmGwLGJSSDy9kpj4McsL2XxY+YLwJPezZNBO94FsuBa791+rQArGDjwnpWZvORP4O3qCll5IMKg+H/LC9CHOuTtrsRq/JrIZ8NHYXQbVvp9aLy4tM4qyP0HTJYuycC9f2Npb81whD7QvAvkGvrBC7jIJlRXwHU0bClx/kts1RllDTsr9XRdBy0h25jaBibrXzlWPqwgLnWZHexwlu7H4E5FC0APtYDySOCvwcrDb6utkgEy7VfM2RJYHRnGloC0w4Q3Ou7D72WRZFghCXX0c+1MaEVOubG0T1taJI5zy+xGHEmtGlEZlN7qBpH9URUmDfJ/wgvTCvkQlkHVxYWotXrwy7lUEIKeLkbM5Iz5ee3/p0lvOisI4FmZzIzrOugz3b/8pRcJfXuN0/+Dsb6I9AnpcM/6Td65tYzQcmjRharX+2q7lnC8R3vkKZukBh17zuq44+p1kffopdpfq+H6Lq9whiSM8Xz0xZ+q5we+ryTcV0iv4mivV191ZSZeWJhL7f1T4g244dOb77xYaoDXobNB9XmzQAzAw92wKNMk+TfzuRIMB+PQzRaJhHPsRLfYxBg02DuKEx6VvgDaZLg=
 after_script: greenkeeper-lockfile-upload
