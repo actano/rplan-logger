@@ -58,6 +58,19 @@ describe('redact', () => {
       expect(redactedMessage).to.equal(expectedMessage)
     })
 
+    //
+    // This test is also skipped for a similar reason from the previous:
+    // If a JWT is prefixed with a string, the match would not detect a
+    // valid token and therefore no contents would be replaced:
+    //
+    // Example:
+    //  - Given the token: x.y.z
+    //  - Given a prefix: p
+    //  - Would yield: p.z.y.z because p.z.y is not a valid token
+    //
+    // Because the described scenario is unlikely on our logs we
+    // are not addressing a fix to this problem now.
+    //
     it.skip('it should redact a token preceded by another segment', () => {
       const message = `rplan.${JWT_TOKEN}`
       const expectedMessage = `rplan.${REDACT_TEXT}`
