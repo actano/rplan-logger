@@ -28,7 +28,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
-    "@rplan/config": "^1.2.0",
+    "@rplan/config": "^2.0.0",
     "@types/bunyan": "^1.8.6",
     "@types/mocha": "^8.0.3",
     "eslint": "^5.16.0",
@@ -37,7 +37,7 @@
     "eslint-plugin-mocha-no-only": "^1.1.1"
   },
   "peerDependencies": {
-    "@rplan/config": "^1.2.0"
+    "@rplan/config": "^2.0.0"
   },
   "scripts": {
     "build": "npm run build:babel",
