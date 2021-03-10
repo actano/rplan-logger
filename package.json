@@ -19,9 +19,7 @@
   },
   "dependencies": {
     "bunyan": "^1.8.12",
-    "bunyan-debug-stream": "^1.0.8",
-    "chai": "^4.2.0",
-    "mocha": "^8.2.0"
+    "bunyan-debug-stream": "^1.0.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -31,10 +29,12 @@
     "@rplan/config": "^2.0.0",
     "@types/bunyan": "^1.8.6",
     "@types/mocha": "^8.0.3",
+    "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-actano-base": "^5.0.0",
     "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-mocha-no-only": "^1.1.1"
+    "eslint-plugin-mocha-no-only": "^1.1.1",
+    "mocha": "^8.2.0"
   },
   "peerDependencies": {
     "@rplan/config": "^2.0.0"
