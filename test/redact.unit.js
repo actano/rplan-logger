@@ -129,6 +129,7 @@ describe('redact', () => {
         another: {
           myNestedArray: [JWT_TOKEN],
         },
+        nullableProperty: null,
       }, JWT_TOKEN],
     }
 
@@ -140,6 +141,7 @@ describe('redact', () => {
         another: {
           myNestedArray: [REDACT_TEXT],
         },
+        nullableProperty: null,
       }, REDACT_TEXT],
     }
 

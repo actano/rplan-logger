@@ -59,6 +59,10 @@ const replaceJwtOccurrences = message => message.replace(JWT_REGEX, (occurrence)
 })
 
 export const redact = (message) => {
+  if (message == null) {
+    return message
+  }
+
   if (isString(message)) {
     return replaceJwtOccurrences(message)
   }
